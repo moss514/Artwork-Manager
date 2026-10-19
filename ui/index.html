@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画作展示</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="view-grid">
+
+  <header class="topbar">
+    <button id="new-work-btn" class="primary-btn">＋ 新建画作</button>
+    <button id="back-btn" class="back-btn" hidden>← 返回画廊</button>
+    <div class="search-wrap">
+      <input id="search-input" type="search" placeholder="搜索画作名、笔记或标签…" autocomplete="off">
+    </div>
+    <select id="sort-select" class="sort-select">
+      <option value="created-desc">导入时间（新→旧）</option>
+      <option value="created-asc">导入时间（旧→新）</option>
+      <option value="updated-desc">修改时间（新→旧）</option>
+      <option value="title-asc">标题 A–Z</option>
+      <option value="manual">手动排序</option>
+    </select>
+  </header>
+
+  <main>
+    <div class="list-bar" id="list-bar" hidden>
+      <button id="drag-toggle" class="drag-toggle">🔓 拖拽模式：关</button>
+    </div>
+    <section id="app-main"></section>
+  </main>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <img src="" alt="">
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+  <div id="tooltip" class="tooltip" hidden></div>
+
+  <div class="session-note">外观预览版 · 数据仅存于当前会话，刷新即重置</div>
+
+  <input id="file-input" type="file" hidden>
+
+  <script src="app.js"></script>
+</body>
+</html>

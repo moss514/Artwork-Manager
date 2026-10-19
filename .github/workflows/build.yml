@@ -1,0 +1,36 @@
+name: 'Build and Release'
+
+on:
+  push:
+    tags:
+      - 'v*' # 当你推送类似 v0.1.0 的 tag 时触发打包
+
+jobs:
+  publish-tauri:
+    permissions:
+      contents: write # 允许 Action 创建 Release
+    runs-on: windows-latest # 使用最新的 Windows 服务器
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Tauri App
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: 'MOSS ${{ github.ref_name }}'
+          releaseBody: 'MOSS 画作管理器最新版本，请下载 .exe 安装包体验。'
+          releaseDraft: false
+          prerelease: false

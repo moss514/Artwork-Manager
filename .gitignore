@@ -1,0 +1,12 @@
+# 编译产物
+src-tauri/target/
+node_modules/
+dist/
+
+# 依赖锁文件 (保留 package-lock.json)
+yarn.lock
+
+# 本地系统文件
+.DS_Store
+Thumbs.db
+*.log
